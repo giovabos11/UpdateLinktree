@@ -3,7 +3,8 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 import data
 
-driver = webdriver.Chrome(executable_path=data.driver_path)
+#driver = webdriver.Chrome(executable_path=data.driver_path)
+driver = webdriver.Firefox(executable_path=data.driver_path)
 
 url = 'https://linktr.ee/'
 
@@ -36,65 +37,29 @@ def help_menu():
     print(' ============================================ ')
 
 def login():
-    driver.get(url)
-                    
-    not_logged_in1 = '//*[@id="gatsby-focus-wrapper"]/div[2]/section/div[2]/a[5]/span'
-    not_logged_in2 = '//*[@id="gatsby-focus-wrapper"]/div[1]/div/div/div[3]/a[1]/span'
+    print('\n [*] Loggin in ...')
 
-    if driver.find_element_by_xpath(not_logged_in1).text == 'Log in':
-        print(' [*] Loggin in ...')
+    login = 'https://linktr.ee/login'
 
-        driver.find_element_by_xpath(not_logged_in1).click()
-
-        sleep(2)
+    driver.get(login)
         
-        username_field = '//*[@id="username"]'
-        driver.find_element_by_xpath(username_field).send_keys(data.username)
+    username_field = '//*[@id="username"]'
+    driver.find_element_by_xpath(username_field).send_keys(data.username)
 
-        password_field = '//*[@id="password"]'
-        driver.find_element_by_xpath(password_field).send_keys(data.password)
+    password_field = '//*[@id="password"]'
+    driver.find_element_by_xpath(password_field).send_keys(data.password)
 
-        submit = '//*[@id="_submit"]'
-        driver.find_element_by_xpath(submit).click()
+    submit = '//*[@id="_submit"]'
+    driver.find_element_by_xpath(submit).click()
 
-        verify = '/html/body/div[1]/div[2]/section[3]/section/section/div/div[1]/div[1]/button'
+    verify = '/html/body/div[1]/div[2]/section[3]/section/section/div/div[1]/div[1]/button'
 
-        sleep(5)
+    sleep(5)
 
-        if driver.find_element_by_xpath(verify).text.strip() == 'Add New Link':
-            print(' [!] Login successful!')
-        else:
-            print(' [X] Login error. Please try again')
-
-    elif driver.find_element_by_xpath(not_logged_in2).text == 'Log in':
-        print(' [*] Loggin in ...')
-
-        driver.find_element_by_xpath(not_logged_in2).click()
-
-        sleep(2)
-
-        username_field = '//*[@id="username"]'
-        driver.find_element_by_xpath(username_field).send_keys(data.username)
-
-        password_field = '//*[@id="password"]'
-        driver.find_element_by_xpath(password_field).send_keys(data.password)
-
-        submit = '//*[@id="_submit"]'
-        driver.find_element_by_xpath(submit).click()
-
-        verify = '/html/body/div[1]/div[2]/section[3]/section/section/div/div[1]/div[1]/button'
-
-        sleep(5)
-
-        if driver.find_element_by_xpath(verify).text.strip() == 'Add New Link':
-            print(' [!] Login successful!')
-        else:
-            print(' [X] Login error. Please try again')
-        
+    if driver.find_element_by_xpath(verify).text.strip() == 'Add New Link':
+        print(' [!] Login successful!')
     else:
-        admin_button = '//*[@id="gatsby-focus-wrapper"]/div[1]/div/div/div[2]/a[2]/button'
-        driver.find_element_by_xpath(admin_button).click()
-        print(' [!] You are already logged in')
+        print(' [X] Login error. Please try again')
     
 def default():
     print('\n [*] Setting default link (' + data.default_link + ')')
@@ -128,7 +93,6 @@ while True:
     elif option.strip().lower() == 'default':
         default()
     elif option.strip().lower() == 'login':
-        print('')
         login()
     elif option.strip().lower() == 'exit':
         exit()
