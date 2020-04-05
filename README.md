@@ -1,1 +1,1 @@
-# LinktreeUpdater
+# UpdateLinktree
