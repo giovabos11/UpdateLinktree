@@ -4,7 +4,7 @@ Modify 'data.py' to your personal data and the path to the webdriver.
 
 Download webdriver: https://github.com/mozilla/geckodriver/releases
 
-If you are using chromeodriver, change the 11th line to ```driver = webdriver.Chrome(executable_path=data.driver_path)``` and delete all lines that contains ```# Delete if using chrome```
+If you are using chromedriver, change the 11th line to ```driver = webdriver.Chrome(executable_path=data.driver_path)``` and delete all lines that contain ```# Delete if using chrome```
 
 ## Usage:
 ```
