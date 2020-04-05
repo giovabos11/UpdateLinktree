@@ -37,13 +37,39 @@ def help_menu():
 
 def login():
     driver.get(url)
+                    
+    not_logged_in1 = '//*[@id="gatsby-focus-wrapper"]/div[2]/section/div[2]/a[5]/span'
+    not_logged_in2 = '//*[@id="gatsby-focus-wrapper"]/div[1]/div/div/div[3]/a[1]/span'
 
-    not_logged_in = '//*[@id="gatsby-focus-wrapper"]/div[1]/div/div/div[3]/a[1]/span' # not logged in
-
-    if driver.find_element_by_xpath(not_logged_in).text == 'Log in':
+    if driver.find_element_by_xpath(not_logged_in1).text == 'Log in':
         print(' [*] Loggin in ...')
 
-        driver.find_element_by_xpath(not_logged_in).click()
+        driver.find_element_by_xpath(not_logged_in1).click()
+
+        sleep(2)
+        
+        username_field = '//*[@id="username"]'
+        driver.find_element_by_xpath(username_field).send_keys(data.username)
+
+        password_field = '//*[@id="password"]'
+        driver.find_element_by_xpath(password_field).send_keys(data.password)
+
+        submit = '//*[@id="_submit"]'
+        driver.find_element_by_xpath(submit).click()
+
+        verify = '/html/body/div[1]/div[2]/section[3]/section/section/div/div[1]/div[1]/button'
+
+        sleep(5)
+
+        if driver.find_element_by_xpath(verify).text.strip() == 'Add New Link':
+            print(' [!] Login successful!')
+        else:
+            print(' [X] Login error. Please try again')
+
+    elif driver.find_element_by_xpath(not_logged_in2).text == 'Log in':
+        print(' [*] Loggin in ...')
+
+        driver.find_element_by_xpath(not_logged_in2).click()
 
         sleep(2)
 
@@ -64,7 +90,7 @@ def login():
             print(' [!] Login successful!')
         else:
             print(' [X] Login error. Please try again')
-
+        
     else:
         admin_button = '//*[@id="gatsby-focus-wrapper"]/div[1]/div/div/div[2]/a[2]/button'
         driver.find_element_by_xpath(admin_button).click()
