@@ -3,9 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 import data
 
-path = 'C:/Users/giova_pwwkjqa/OneDrive/Escritorio/Programming Stuff/WebDrivers/chromedriver.exe'
-
-driver = webdriver.Chrome(executable_path=path)
+driver = webdriver.Chrome(executable_path=data.driver_path)
 
 url = 'https://linktr.ee/'
 
