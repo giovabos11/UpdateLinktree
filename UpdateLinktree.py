@@ -1,10 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.firefox.options import Options # Delete if using chrome
 from time import sleep
 import data
 
+options = Options()     # Delete if using chrome
+options.headless = True # Delete if using chrome
+
 #driver = webdriver.Chrome(executable_path=data.driver_path)
-driver = webdriver.Firefox(executable_path=data.driver_path)
+driver = webdriver.Firefox(options=options, executable_path=data.driver_path) # Delete if using chrome
 
 url = 'https://linktr.ee/'
 
